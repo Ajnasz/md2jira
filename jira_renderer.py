@@ -91,8 +91,9 @@ class JIRARenderer(BaseRenderer):
         return token.content
 
     def render_heading(self, token):
-        template = 'h{level}. {inner}\n'
+        template = 'h{level}. {inner}\n\n'
         inner = self.render_inner(token)
+
         return template.format(level=token.level, inner=inner)
 
     def render_quote(self, token):
@@ -129,6 +130,7 @@ class JIRARenderer(BaseRenderer):
 
         if not inner.endswith('\n'):
             template += '\n'
+
         result = template.format(prefix=prefix, inner=inner)
         return result
 
@@ -192,7 +194,8 @@ class JIRARenderer(BaseRenderer):
 
     @staticmethod
     def render_line_break(token):
-        return '\\\\\n'
+        # return '\\\\\n'
+        return ' '
 
     @staticmethod
     def render_html_block(token):
